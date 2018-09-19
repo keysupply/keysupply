@@ -1,0 +1,628 @@
+<style>
+    @keyframes fadein {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    
+
+    
+#overlayuser {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+        background-color: rgba(255, 255, 255, 0.8); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    animation: fadein .25s ease forwards 1 normal;
+    
+}
+    
+.tradewindow {
+    background: white;
+    width: 70%;
+    padding: 25px;
+    height: 65%;
+    margin: auto;
+    z-index: 1;
+    margin-top: 5%;
+    padding-top: 100px;
+    box-shadow: 1px 5px 46px 0px #0000005e;
+}
+    
+.tradebutton {
+    width: 21%;
+    background: linear-gradient(90deg, #00ffa0, #00ffdf);
+    color: #272727;
+    padding-top: 20px;
+    left: 40%;
+    bottom: -851%;
+    font-size: 20px;
+    position: absolute;
+    font-family: Roboto;
+    padding-bottom: 20px;
+    box-shadow: 0px 6px #579482;
+    text-align: center;
+    padding-left: 60px;
+    border-radius: 10px;
+    padding-right: 60px;
+}
+    
+    .blue.accent-2 {
+    background-color: #ff9e5c !important;
+}
+    
+    .btn.disabled, .disabled.btn-large, .disabled.btn-small, .btn-floating.disabled, .btn-large.disabled, .btn-small.disabled, .btn-flat.disabled, .btn:disabled, .btn-large:disabled, .btn-small:disabled, .btn-floating:disabled, .btn-large:disabled, .btn-small:disabled, .btn-flat:disabled, .btn[disabled], .btn-large[disabled], .btn-small[disabled], .btn-floating[disabled], .btn-large[disabled], .btn-small[disabled], .btn-flat[disabled] {
+        color: white;
+        font-family: Roboto;
+    }
+    
+.tradeheader {
+    background: #272727;
+    width: 70%;
+    height: 7%;
+    margin-left: 15%;
+    margin-top: 5%;
+    position: inherit;
+    z-index: 11;
+    top: 0;
+}
+    
+.item {
+    background: radial-gradient(white, #efefef);
+    width: 15%;
+    border: solid 1px #dcdcdc;
+    box-shadow: 0px 6px 11px #00000021;
+    height: 45%;
+    margin: auto;
+}
+    
+    #overlaybot {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+        background-color: rgba(255, 255, 255, 0.8); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+            animation: fadein .25s ease forwards 1 normal;
+}
+
+</style>
+<script>
+function on() {
+    document.getElementById("overlayuser").style.display = "block";
+}
+
+function off() {
+    document.getElementById("overlayuser").style.display = "none";
+}
+</script>
+
+<script>
+function on1() {
+    document.getElementById("overlaybot").style.display = "block";
+}
+
+function off1() {
+    document.getElementById("overlaybot").style.display = "none";
+}
+</script>
+<video style="width: 1947px;left: -115px;margin-bottom: 115px;z-index: -1;" class="trademachine" playsinline="" autoplay="" muted="" loop="">
+<source src="/public/img/machine.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<a name="trade"></a>
+ <a class="nav-link opskinsNavBtn tradebuttons" style="z-index: 1; position: absolute; left: 698px; top: 1157px; " ><button  onclick="on()" type="button" class="grow btn accentBtn opskinsBtn" style="padding-bottom: 10px; height: 60px; width: 235px; background: #9fbcbc; box-shadow: inset 0px 0px 20px #0000003b; padding-top: 12px; font-family: Roboto;"><span class="opskinsBtnText" style="color: white;font-size: 18px;text-shadow: 0px 0px 10px #0000006b;">DEPOSIT</span></button></a>
+<a class="nav-link opskinsNavBtn tradebuttons"  style="z-index: 1; position: absolute; left: 1004px; top: 1158px; "><button onclick="on1()" type="button" class="grow" style="padding-bottom: 10px; height: 60px; width: 235px; background: #9fbcbc; border: none; box-shadow: inset 0px 0px 20px #0000003b; padding-top: 12px; font-family: Roboto;"><span class="opskinsBtnText" style="color: white;font-size: 18px;text-shadow: 0px 0px 10px #0000006b;">WITHDRAW</span></button></a>
+
+<div id="overlayuser">
+    <div class="tradewindow">
+        <div class="allkeys" ng-app="app" ng-controller="ctrl" id="mainTrade" >
+					<div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/tf2key.png) 50%;  border-bottom: 10px solid #00ffa1;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">${{getFixed config.rates.tf2SellPrice}}</span> 
+									</div>
+							<img src="/public/img/tf2key.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								<input ng-model="tf2SellAmount" placeholder="Amount" id="tf2SellAmount" type="number" min="1" max="50" class="validate" autocomplete="off" style="
+    text-align:  center;
+    background: #ff9e5c;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 2px;
+    font-family:  Roboto;
+    color: white;
+    border-radius: 48px;
+    font-size: 16px;
+">
+								<label for="tf2SellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">TF2 Crate Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);" class="btn blue accent-2" disabled ng-disabled="!tf2SellAmount" id="tf2SellBtn"><span style="color: white;">Sell</span> <span ng-hide="!tf2SellAmount" ng-bind="tf2SellAmount * prices.tf2SellPrice | currency" id="tf2SellTotalAmount">$0.00</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+            <div class="keyBox z-depth-1 grey lighten-5" style="margin-left: 30px;width: 19%; height: 55%; display: inline-block; background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/vgokey.png) 50%;  border-bottom: 10px solid #00ffa1;">
+						<div class="topKeyBox" style="width: 32%;">
+							<div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+								<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">${{getFixed config.rates.vgoSellPrice}}</span> 
+							</div> 
+							<img src="/public/img/vgokey.png" style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: 4%;
+">
+								<input ng-model="vgoSellAmount" placeholder="Amount" id="vgoSellAmount" type="number" min="1" max="50" class="validate" autocomplete="off" style="
+    text-align:  center;
+    background: #ff9e5c;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 2px;
+    font-family:  Roboto;
+    color: white;
+    border-radius: 48px;
+    font-size: 16px;
+">
+								<label for="vgoSellAmount"></label>
+							</div>
+							<div class="col s12 center-align">
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">VGO Skeleton Keys</a>
+								<a style="width: 100%; font-family: Roboto;    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2);" class="btn blue accent-2" disabled ng-disabled="!vgoSellAmount" id="vgoSellBtn"><span style="color: white;">Sell</span> <span ng-hide="!vgoSellAmount" ng-bind="vgoSellAmount * prices.vgoSellPrice | currency" id="vgoSellTotalAmount">$0.00</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+            					<div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/csgokey.png) 50%;  border-bottom: 10px solid #00ffa1; margin-left: 30px; opacity: 0.3;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">$1.99</span> 
+									</div>
+							<img src="/public/img/csgokey.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								<input ng-model="tf2SellAmount" placeholder="Amount" id="tf2SellAmount" type="number" min="1" max="50" class="validate" autocomplete="off" style="
+    text-align:  center;
+    background: #ff9e5c;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 2px;
+    font-family:  Roboto;
+    color: white;
+    border-radius: 48px;
+    font-size: 16px;
+">
+								<label for="tf2SellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">Random CS:GO Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">DISABLED</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+            <div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/treasurekey.png) 50%;  border-bottom: 10px solid #00ffa1; margin-left: 30px; opacity: 0.3;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">$5.99</span> 
+									</div>
+							<img src="/public/img/treasurekey.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								<input ng-model="tf2SellAmount" placeholder="Amount" id="tf2SellAmount" type="number" min="1" max="50" class="validate" autocomplete="off" style="
+    text-align:  center;
+    background: #ff9e5c;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 2px;
+    font-family:  Roboto;
+    color: white;
+    border-radius: 48px;
+    font-size: 16px;
+">
+								<label for="tf2SellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">Dota2 Treasure Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">DISABLED</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+				</div>
+
+        </div>
+        <div class="tradeheader">
+        <p style="
+    color: white;
+    font-family: Roboto;
+    padding: 20px;
+    font-size: 20px;
+                  margin-top: unset;
+    opacity: 0.3;
+"><i class="fa fa-plus" style="margin-right: 20px;"></i>DEPOSIT KEYS <span style="margin-left: 10px;" class="navBalanceContain z-depth-2">$<span class="balance">??</span></span></p>
+            <div onclick="off()" class="tradebutton"><i class="fa fa-times" style="margin-right: 20px;"></i>CLOSE</div>
+            
+        </div>
+    <div style="max-width: none; width: 45%; display: none;" ng-app="app" ng-controller="ctrl" id="mainTrade" class="mainTrade container" >
+    		<div class="col l6 m12 s12 sellSection" style="width: 38%;">
+			<div class="row">
+				<div class="col l5 m5 s6 offset-l1 offset-m1">
+					<div class="keyBox z-depth-1 hoverable grey lighten-5">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.tf2SellPrice}}</span> 
+							</div> 
+							<img style="width: 100%" src="/public/img/tf2key.png"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="tf2SellAmount" placeholder="Amount" id="tf2SellAmount" type="number" min="1" max="50" class="validate" autocomplete="off">
+								<label for="tf2SellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a class="btn blue accent-2" disabled ng-disabled="!tf2SellAmount" id="tf2SellBtn"><span class="en">Sell</span><span ng-hide="!tf2SellAmount" ng-bind="tf2SellAmount * prices.tf2SellPrice | currency" id="tf2SellTotalAmount">$0.00</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l5 m5 s6" style="width: 38%;">
+					<div class="keyBox grey lighten-5 z-depth-1 hoverable">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.vgoSellPrice}}</span> 
+							</div>
+							<img style="width: 100%" src="/public/img/vgokey.png"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="vgoSellAmount" placeholder="Amount" id="vgoSellAmount" type="number" min="1" max="200" class="validate" autocomplete="off">
+								<label for="vgoSellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a class="btn blue accent-2" disabled ng-disabled="!vgoSellAmount" id="vgoSellBtn"><span class="en">Sell</span> <span ng-hide="!vgoSellAmount" ng-bind="vgoSellAmount * prices.vgoSellPrice | currency" id="vgoSellTotalAmount">$0.00</span>
+								</a>  
+							</div>
+						</div>
+					</div>
+				</div>
+                				<div class="col l5 m5 s6" style="width: 38%;">
+					<div class="keyBox grey lighten-5 z-depth-1 hoverable">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.vgoSellPrice}}</span> 
+							</div>
+							<img style="width: 100%" src="/public/img/csgokey.png"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="vgoSellAmount" placeholder="Amount" id="vgoSellAmount" type="number" min="1" max="200" class="validate" autocomplete="off">
+								<label for="vgoSellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a class="btn blue accent-2" disabled ng-disabled="!vgoSellAmount" id="vgoSellBtn"><span class="en">Sell</span> <span ng-hide="!vgoSellAmount" ng-bind="vgoSellAmount * prices.vgoSellPrice | currency" id="vgoSellTotalAmount">$0.00</span>
+								</a>  
+							</div>
+						</div>
+					</div>
+				</div>
+                
+                <div class="col l5 m5 s6" style="width: 38%;">
+					<div class="keyBox grey lighten-5 z-depth-1 hoverable">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.vgoSellPrice}}</span> 
+							</div>
+							<img style="width: 100%" src="/public/img/treasurekey.png"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="vgoSellAmount" placeholder="Amount" id="vgoSellAmount" type="number" min="1" max="200" class="validate" autocomplete="off">
+								<label for="vgoSellAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a class="btn blue accent-2" disabled ng-disabled="!vgoSellAmount" id="vgoSellBtn"><span class="en">Sell</span> <span ng-hide="!vgoSellAmount" ng-bind="vgoSellAmount * prices.vgoSellPrice | currency" id="vgoSellTotalAmount">$0.00</span>
+								</a>  
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+</div>
+        </div>
+    </div>
+</div>
+
+<div id="overlaybot">
+<div class="tradewindow">
+        <div class="allkeys" ng-app="app" ng-controller="ctrl" id="mainTrade" >
+					<div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/tf2key.png) 50%;  border-bottom: 10px solid #00ffa1; opacity: 0.5;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">${{getFixed config.rates.tf2BuyPrice}}</span> 
+									</div>
+							<img src="/public/img/tf2key.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">TF2 Crate Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a> 
+							</div>
+						</div>
+					</div>
+            <div class="keyBox z-depth-1 grey lighten-5" style="margin-left: 30px;width: 19%; height: 55%; display: inline-block; background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/vgokey.png) 50%;  border-bottom: 10px solid #00ffa1; opacity: 0.5;">
+						<div class="topKeyBox" style="width: 32%;">
+							<div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+								<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">${{getFixed config.rates.vgoSellPrice}}</span> 
+							</div> 
+							<img src="/public/img/vgokey.png" style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: 4%;
+">
+								
+							</div>
+							<div class="col s12 center-align">
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">VGO Skeleton Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a>
+							</div>
+						</div>
+					</div>
+            					<div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/csgokey.png) 50%;  border-bottom: 10px solid #00ffa1; margin-left: 30px; opacity: 0.5;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">$1.99</span> 
+									</div>
+							<img src="/public/img/csgokey.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">Random CS:GO Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a>
+							</div>
+						</div>
+					</div>
+            <div class="keyBox z-depth-1 grey lighten-5" style="width: 19%; height: 55%; display: inline-block;  background: radial-gradient(#ffffffe3, #e2e2e2e3), url(/public/img/treasurekey.png) 50%;  border-bottom: 10px solid #00ffa1; margin-left: 30px;  opacity: 0.5;">
+						<div class="topKeyBox" style="width: 32%;">
+                            <div class="keyPrice" style="position: absolute;right: -165px;border-bottom-left-radius: 15px;background: #bdbdbd;">
+										<span class="badge z-depth-1" style="
+    margin-left: 0;
+    padding-left: 24px;
+    box-shadow: none;
+    padding-bottom: 31px;
+    font-size: 18px;
+    font-family: Roboto;
+    padding-top: 9px;
+    color: white;
+    float: right;
+    padding-right: 22px;
+">$5.99</span> 
+									</div>
+							<img src="/public/img/treasurekey.png"  style="width: 230%; margin-top: 45px; margin-left: 22px;"> 
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3"  style="
+    position:  absolute;
+    width: 5%;
+    top: 17%;
+    left: -10%;
+">
+								
+							</div>
+							<div class="col s12 center-align"> 
+                                <a style="margin-bottom: 5px; color: grey; font-size: 15px;">Dota2 Treasure Keys</a>
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+        </div>
+        <div class="tradeheader">
+        <p style="
+    color: white;
+    font-family: Roboto;
+    padding: 20px;
+    font-size: 20px;
+                  margin-top: unset;
+    opacity: 0.3;
+"><i class="fa fa-plus" style="margin-right: 20px;"></i>WITHDRAW KEYS <span style="margin-left: 10px;" class="navBalanceContain z-depth-2">$<span class="balance">??</span></span></p>
+            <div onclick="off1()" class="tradebutton"><i class="fa fa-times" style="margin-right: 20px;"></i>CLOSE</div>
+        <div ng-app="app" ng-controller="ctrl" id="mainTrade" class="mainTrade container"  style="display: none;">
+            
+	<div class="row">
+    		<div class="col l6 m12 s12 buySection">
+			<div class="row">
+				<div class="col l5 m5 s6 offset-l1 offset-m1">
+					<div class="keyBox z-depth-1 hoverable grey lighten-5" style=" opacity: 0.5;">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.tf2BuyPrice}}</span> 
+							</div> 
+							<img style="width: 100%" src="/public/img/tf2key.png"> 
+							<div class="inStock right-align" style="position: absolute; bottom: 20px; right: 15px">
+								x<span class="tf2KeysInStock">{{tf2KeysInStock}}</span>
+								<div class="inStockText"><span class="en">in stock</span></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="tf2BuyAmount" placeholder="Amount" id="tf2BuyAmount" type="number" min="1" max="50" class="validate" autocomplete="off">
+								<label for="tf2BuyAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a>  
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col l5 m5 s6">
+					<div class="keyBox z-depth-1 hoverable grey lighten-5" style=" opacity: 0.5;">
+						<div class="topKeyBox">
+							<div class="keyPrice" style="position: absolute; top: 10px;">
+								<span class="badge indigo lighten-4 black-text z-depth-1">${{getFixed config.rates.vgoBuyPrice}}</span> 
+							</div>
+							<img style="width: 100%" src="/public/img/vgokey.png">
+							<div class="inStock right-align" style="position: absolute; bottom: 20px; right: 15px">
+								x<span class="vgoKeysInStock">{{vgoKeysInStock}}</span>
+								<div class="inStockText"><span class="en">in stock</span></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s6 offset-s3">
+								<input ng-model="vgoBuyAmount" placeholder="Amount" id="vgoBuyAmount" type="number" min="1" max="200" class="validate" autocomplete="off">
+								<label for="vgoBuyAmount"></label>
+							</div>
+							<div class="col s12 center-align"> 
+								<a style="width: 100%; font-family: Roboto;     box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14), 0 1px 7px 0 rgba(0,0,0,0.12), 0 3px 1px -1px rgba(0,0,0,0.2); background-color: #ff7373;" class="btn"><span style="color: grey;">OUT OF STOCK</span>
+								</a>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+    </div>
+    </div>
+    
+</div>
+
+
